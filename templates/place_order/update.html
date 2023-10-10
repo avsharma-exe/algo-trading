@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+  <title>FAT</title>
+</head>
+<body>
+  <div class="container">
+    <form method="POST" action="/update/{{order.id}}" class="mt-4">
+
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="parent_name">Parent name</label>
+            <input type="text" id="parent_name" name="parent_name"
+            value="{{order.name}}" class="form-control" disabled />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="derivative_name">Derivative name</label>
+            <input type="text" id="derivative_name" name="derivative_name"
+            value="{{order.derivative_name}}" class="form-control" disabled />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="capital">Capital</label>
+            <input type="number" id="capital" name="capital" value={{order.capital}} class="form-control" step="0.05" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="entry_price">Entry Price</label>
+            <input type="number" id="entry_price" name="entry_price" class="form-control" step="0.05" value={{order.trigger_price}} />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="square_off">Square Off (Value Relative)</label>
+            <input type="number" id="square_off" name="square_off" class="form-control" step="0.05" value={{order.squareoff}} />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label for="action" class="form-label">Action</label>
+            <select class="form-select" aria-label="Default select example" name="action">
+              {% if order.action == 'long' %}
+                <option value="long" selected>Long</option>
+                <option value="short">Short</option>
+              {% else %}
+                <option value="long">Long</option>
+                <option value="short" selected>Short</option>
+              {% endif %}
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="status">Status (True/False)</label>
+              <input type="boolean" id="status" name="status" value={{order.status}} class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  </div>
+
+
+</body>
+</html>
